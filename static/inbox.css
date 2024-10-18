@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    position: relative;
+}
+
+.menu-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.menu-icon .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.menu-links {
+    display: none;
+    list-style-type: none;
+    position: absolute;
+    left: 10px; /* Changed from right to left */
+    top: 50px;
+    background-color: #333;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.menu-links.active {
+    display: block;
+}
+
+.menu-links li {
+    padding: 10px 20px;
+}
+
+.menu-links li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.menu-links li a:hover {
+    background-color: #575757;
+}
+
+/* Inbox and Deleted Messages container styling */
+.inbox-container, .deleted-container, .reply-container {
+    width: 80%;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Email inbox table styling */
+.email-inbox {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.email-inbox th, .email-inbox td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.email-inbox th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.email-inbox tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.email-inbox tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form styling for reply page */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}

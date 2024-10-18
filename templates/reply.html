@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reply to Message</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inbox.css') }}">
+</head>
+<body>
+    <!-- Navbar for consistency -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="menu-links" class="menu-links">
+            <li><a href="inbox">Inbox</a></li>
+            <li><a href="reply">Reply</a></li>
+            <li><a href="delete">Deleted Messages</a></li>
+        </ul>
+    </div>
+
+    <h1>Reply to Email</h1>
+    <p><strong>Full Name:</strong> {{ name }}</p>
+    <p><strong>Company Name:</strong> {{ company }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Message:</strong> {{ message }}</p>
+    <p><strong>Submission Date:</strong> {{ date }}</p>
+
+    <!-- Reply Section -->
+    <div class="reply-container">
+        <h1>Reply to Message</h1>
+        <form method="POST" action="{{ url_for('send_reply') }}">
+            <div>
+                <label for="reply-subject">Subject:</label>
+                <input type="text" id="reply-subject" name="subject" placeholder="Reply Subject" required>
+            </div>
+            <div>
+                <label for="reply-message">Message:</label>
+                <textarea id="reply-message" name="message" placeholder="Write your reply here..." style="height:200px" required></textarea>
+            </div>
+            <input type="submit" value="Send Reply">
+        </form>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu-links');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

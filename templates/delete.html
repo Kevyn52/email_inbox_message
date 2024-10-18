@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inbox.css') }}">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="menu-links" class="menu-links">
+            <li><a href="inbox.html">Inbox</a></li>
+            <li><a href="reply.html">Reply</a></li>
+            <li><a href="delete.html">Deleted Messages</a></li>
+        </ul>
+    </div>
+
+    <!-- Deleted Messages Section -->
+    <div class="deleted-container">
+        <h1>Deleted Messages</h1>
+        <table class="email-inbox">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Full Name</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row, replace with dynamic content -->
+                <tr>
+                    <td>2024-10-14</td>
+                    <td>John Doe</td>
+                    <td>Acme Inc.</td>
+                    <td>john.doe@example.com</td>
+                    <td>Hello! I need more info about your products.</td>
+                    <td>
+                        <button onclick="restoreMessage(this)">Restore</button>
+                        <button onclick="permanentlyDeleteMessage(this)">Delete Permanently</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu-links');
+            menu.classList.toggle('active');
+        }
+
+        function restoreMessage(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+            // Code to restore the message to the inbox
+        }
+
+        function permanentlyDeleteMessage(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+            // Code to permanently delete the message
+        }
+    </script>
+</body>
+</html>

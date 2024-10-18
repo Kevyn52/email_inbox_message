@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Inbox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='inbox.css') }}">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="menu-links" class="menu-links">
+            <li><a href="inbox">Inbox</a></li>
+            <li><a href="sent">Sent</a></li>
+            <li><a href="delete">Deleted Messages</a></li> <!-- Added new link -->
+        </ul>
+    </div>
+
+    <!-- Inbox Section -->
+    <div class="inbox-container">
+        <h1>Email Inbox</h1>
+        <table class="email-inbox">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Full Name</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                <tr>
+                    <td>{{ email.date }}</td>
+                    <td>{{ email.name }}</td>
+                    <td>{{ email.company }}</td>
+                    <td>{{ email.email }}</td>
+                    <td>{{ email.message }}</td>
+                    <td>
+                        <button onclick="replyMessage(this, '{{ email.date }}', '{{ email.name }}', '{{ email.company }}', '{{ email.email }}', '{{ email.message }}', '{{ email.date }}')">Reply</button>
+                    </td>
+                    <!-- <td><button onclick="deleteMessage(this, '{{ email.name }}', '{{ email.company }}', '{{ email.email }}', '{{ email.message }}', '{{ email.date }}')">Delete</button></td> -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu-links');
+            menu.classList.toggle('active');
+        }
+
+        function replyMessage(button, name, company, email, message, date) {
+            console.log("reply");
+            const url = `reply?name=${encodeURIComponent(name)}&company=${encodeURIComponent(company)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}&date=${encodeURIComponent(date)}`;
+            window.location.href = url;
+        }
+
+        // function deleteMessage(button) {
+        //     const row = button.parentElement.parentElement;
+        //     const fullName = row.cells[0].innerText;
+        //     const company = row.cells[1].innerText;
+        //     const email = row.cells[2].innerText;
+        //     const message = row.cells[3].innerText;
+        //     const submissionDate = row.cells[4].innerText;
+
+        //     // Construct URL with query parameters
+        //     const url = `delete?name=${encodeURIComponent(fullName)}&company=${encodeURIComponent(company)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}&date=${encodeURIComponent(submissionDate)}`;
+
+        //     // Redirect to delete.php with the parameters
+        //     window.location.href = url;
+        // }
+    </script>
+</body>
+</html>
