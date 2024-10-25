@@ -8,12 +8,13 @@
 <body>
     <div class="inbox-container">
         <h1>Reply Sent Successfully!</h1>
-        <p><strong>Subject:</strong> {{ subject }}</p>
-        <p><strong>Your Message:</strong> {{ message }}</p>
-        <p><strong>To:</strong> {{ name }} ({{ email }})</p>
-        <p><strong>Original Message:</strong> {{ original_message }}</p>
-        <p><strong>Submission Date:</strong> {{ date }}</p>
-        <button onclick="gohome()">gohome</button>
+        <p><strong>Subject:</strong><br> {{ subject }}</p>
+        <p><strong>Your Message:</strong><br> {{ message.replace('\n', '<br>') | safe }}</p>
+        <p><strong>To:</strong><br> {{ name }} ({{ email }})</p>
+        <p><strong>Original Message:</strong><br> {{ original_message.replace('\n', '<br>') | safe }}</p>
+        <p><strong>Submission Date:</strong><br> {{ date.replace('\n', '<br>') | safe }}</p>
+        <button onclick="gohome()">Go Home</button>
+
     </div>
 
     <script>

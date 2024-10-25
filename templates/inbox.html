@@ -42,9 +42,9 @@
                     <td>{{ email.name }}</td>
                     <td>{{ email.company }}</td>
                     <td>{{ email.email }}</td>
-                    <td>{{ email.message }}</td>
+                    <td>{{ email.message.replace('\n', '<br>') | safe }}</td>
                     <td>
-                        <button onclick="replyMessage(this, '{{ email.date }}', '{{ email.name }}', '{{ email.company }}', '{{ email.email }}', '{{ email.message }}', '{{ email.date }}')">Reply</button>
+                        <button onclick="replyMessage(this, '{{ email.date }}', '{{ email.name }}', '{{ email.company }}', '{{ email.email }}', `{{ email.message }}`, '{{ email.date }}')">Reply</button>
                     </td>
                     <!-- <td><button onclick="deleteMessage(this, '{{ email.name }}', '{{ email.company }}', '{{ email.email }}', '{{ email.message }}', '{{ email.date }}')">Delete</button></td> -->
                 </tr>
@@ -59,7 +59,8 @@
             menu.classList.toggle('active');
         }
 
-        function replyMessage(button, name, company, email, message, date) {
+        function replyMessage(button, date, name, company, email, message) {
+            
             console.log("reply");
             const url = `reply?name=${encodeURIComponent(name)}&company=${encodeURIComponent(company)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}&date=${encodeURIComponent(date)}`;
             window.location.href = url;

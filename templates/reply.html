@@ -22,16 +22,24 @@
     </div>
 
     <h1>Reply to Email</h1>
-    <p><strong>Full Name:</strong> {{ name }}</p>
-    <p><strong>Company Name:</strong> {{ company }}</p>
-    <p><strong>Email:</strong> {{ email }}</p>
-    <p><strong>Message:</strong> {{ message }}</p>
-    <p><strong>Submission Date:</strong> {{ date }}</p>
 
     <!-- Reply Section -->
     <div class="reply-container">
         <h1>Reply to Message</h1>
         <form method="POST" action="{{ url_for('send_reply') }}">
+            <p><strong>Date:<br></strong> {{ date }}</p>
+            <p><strong>Full Name:<br></strong> {{ name }}</p>
+            <p><strong>Company Name:<br></strong> {{ company }}</p>
+            <p><strong>Email:<br></strong> {{ email }}</p>
+            <p><strong>Message:<br></strong> {{ message }}</p>
+            <p><strong>Submission Date:<br></strong> {{ date.replace('\n', '<br>') | safe }}</p>
+        
+            <input type="hidden" name="name" value="{{ name }}">
+            <input type="hidden" name="company" value="{{ company }}">
+            <input type="hidden" name="email" value="{{ email }}">
+            <input type="hidden" name="original_message" value="{{ message }}">
+            <input type="hidden" name="date" value="{{ date }}">
+        
             <div>
                 <label for="reply-subject">Subject:</label>
                 <input type="text" id="reply-subject" name="subject" placeholder="Reply Subject" required>
